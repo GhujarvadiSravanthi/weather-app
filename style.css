@@ -1,0 +1,440 @@
+/* General Body and Background Styling */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out; /* Smooth transition for background changes */
+    color: #fff; /* Default text color */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+/* Default background image */
+body {
+    background-image: url('assets/bg-default.jpg');
+}
+
+/* Background images based on weather conditions (will be set by JS) */
+body.clear-sky {
+    background-image: url('assets/bg-clear.jpg');
+}
+
+body.rainy-sky {
+    background-image: url('assets/bg-rain.jpg');
+}
+
+body.cloudy-sky {
+    background-image: url('assets/bg-cloudy.jpg');
+}
+
+/* Main Weather Container Styling */
+.weather-container {
+    background: rgba(0, 0, 0, 0.4); /* Dark overlay for readability */
+    backdrop-filter: blur(15px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(15px); /* Safari support */
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    width: 90%;
+    max-width: 900px; /* Max width for desktop */
+    text-align: center;
+    box-sizing: border-box; /* Include padding in width */
+    margin: 20px; /* Add some margin for smaller screens */
+}
+
+/* Header and Search Box */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.app-title {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.search-box {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.city-input {
+    flex-grow: 1;
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 1.1em;
+    outline: none;
+}
+
+.city-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-button,
+.voice-search-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-button:hover,
+.voice-search-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.search-icon,
+.mic-icon {
+    width: 24px;
+    height: 24px;
+    color: #fff;
+}
+
+.voice-search-button.listening {
+    background: rgba(255, 255, 255, 0.4);
+    animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    to {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+}
+
+
+/* Messages (Loading/Error) */
+.message {
+    font-size: 1.2em;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.message.error {
+    background: rgba(255, 0, 0, 0.2);
+    border-color: rgba(255, 0, 0, 0.4);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Current Weather Card */
+.weather-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.card-header h2 {
+    font-size: 2.2em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.card-header p {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.weather-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.temp-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.temp-icon img {
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+}
+
+.temp-icon span {
+    font-size: 4em;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.description-extras p {
+    margin: 5px 0;
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Map Container Styling (REMOVED) */
+
+
+/* Forecast Section */
+.forecast-title {
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.forecast-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive grid */
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.forecast-day-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.forecast-day-card .day-name {
+    font-weight: 600;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.forecast-day-card .forecast-icon {
+    width: 50px;
+    height: 50px;
+    margin: 10px 0;
+}
+
+.forecast-day-card .forecast-temp {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.forecast-day-card .forecast-description {
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 5px;
+    text-transform: capitalize;
+}
+
+/* Units Toggle Styling */
+.unit-toggle {
+    display: flex;
+    margin-top: 20px; /* Space from search box */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.unit-btn {
+    background: transparent;
+    border: none;
+    padding: 10px 18px;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    outline: none;
+}
+
+.unit-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.unit-btn.active {
+    background: rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+}
+
+/* Forecast Toggle Buttons Styling */
+.forecast-toggle-buttons {
+    display: flex;
+    flex-direction: column; /* Stack vertically on small screens */
+    align-items: center;
+    margin-top: 40px; /* Space from current weather card */
+    margin-bottom: 20px; /* Space before forecast containers */
+    width: 100%;
+}
+
+.forecast-toggle-buttons .forecast-title {
+    margin-bottom: 15px; /* Space between title and buttons */
+}
+
+.forecast-type-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 10px 25px;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s ease, font-weight 0.3s ease;
+    outline: none;
+    margin: 5px; /* Space between buttons */
+}
+
+.forecast-type-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.forecast-type-btn.active {
+    background: rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+}
+
+/* Hourly Forecast Card Styling (similar to daily but perhaps slightly smaller) */
+.hourly-forecast-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 10px; /* Slightly less padding */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hourly-forecast-card .hour-time {
+    font-weight: 600;
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+.hourly-forecast-card .hourly-icon {
+    width: 40px; /* Slightly smaller icon */
+    height: 40px;
+    margin: 5px 0;
+}
+
+.hourly-forecast-card .hourly-temp {
+    font-size: 1.5em; /* Slightly smaller temp */
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.hourly-forecast-card .hourly-description {
+    font-size: 0.75em; /* Slightly smaller description */
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 5px;
+    text-transform: capitalize;
+}
+
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center; /* Align items vertically in the center */
+        flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    }
+
+    .app-title {
+        margin-bottom: 0;
+    }
+
+    .search-box {
+        margin-right: 15px; /* Space between search and toggle */
+        margin-top: 0; /* Remove top margin for larger screens */
+    }
+
+    .unit-toggle {
+        margin-top: 0; /* Remove top margin for larger screens */
+    }
+
+    .weather-card {
+        flex-direction: row; /* Layout for current weather on larger screens */
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .card-header {
+        text-align: left;
+        margin-right: 30px;
+    }
+
+    .weather-details {
+        flex-direction: row;
+        margin-top: 0;
+    }
+
+    .temp-icon {
+        margin-right: 30px;
+        margin-bottom: 0;
+    }
+
+    /* Forecast Toggle Buttons Layout for larger screens */
+    .forecast-toggle-buttons {
+        flex-direction: row; /* Layout horizontally */
+        justify-content: center; /* Center align buttons */
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    .forecast-toggle-buttons .forecast-title {
+        margin-bottom: 0; /* Remove bottom margin when horizontal */
+        margin-right: 20px; /* Space between title and buttons */
+    }
+
+    .forecast-type-btn {
+        margin: 0 5px; /* Adjust horizontal margin */
+    }
+}
+
+@media (min-width: 1024px) {
+    .forecast-container {
+        grid-template-columns: repeat(5, 1fr); /* 5 columns for 5-day forecast */
+    }
+    /* For hourly, allow more columns if space permits */
+    #hourly-forecast-container {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* More columns for hourly */
+    }
+}
